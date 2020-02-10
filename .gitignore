@@ -1,0 +1,31 @@
+*.iml
+*.patch
+.classpath
+.DS_Store
+.idea
+.metadata
+.project
+.settings
+RemoteSystemsTempFiles
+
+**/.classpath
+**/.project
+**/.settings
+**/bin
+**/target
+**/db
+**/C:
+**/.checkstyle
+
+**/hs*.log
+**/replay*.log
+
+# Ansible
+**/*.log
+**/.galaxy/
+**/ansible/configs/*.properties
+**/ansible/configs/*.conf
+**/*.tmp
+**/*.ymle
+**/ansible/configs/newrelic.yml
+# **/ansible/configs/logback.xml
