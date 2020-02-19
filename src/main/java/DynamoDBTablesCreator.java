@@ -1,18 +1,15 @@
-import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
-import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.model.AttributeDefinition;
 import com.amazonaws.services.dynamodbv2.model.KeySchemaElement;
 import com.amazonaws.services.dynamodbv2.model.KeyType;
-import com.amazonaws.services.dynamodbv2.model.ListTablesResult;
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.amazonaws.services.dynamodbv2.model.ScalarAttributeType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DynamoDBConfig {
+public class DynamoDBTablesCreator {
 
     final static String ENDPOINT = "http://localhost:8000";
     final static String FLIGHT_MGMT_NAME = "FLIGHT-MGMT";
@@ -20,9 +17,9 @@ public class DynamoDBConfig {
 
     private AmazonDynamoDB dynamoDB;
 
-    public DynamoDBConfig() {
+    public DynamoDBTablesCreator() {
         dynamoDB = AmazonDynamoDBClientBuilder.standard()
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(ENDPOINT, "us-west-2"))
+//                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(ENDPOINT, "us-west-2"))
                 .build();
     }
 
@@ -50,13 +47,13 @@ public class DynamoDBConfig {
     }
 
     public static void main(String[] args) {
-        String flightMgmtPK = "id";
-        String flightMgmtSK = "type";
+        String flightMgmtPK = "id";  //FR-XXXX
+        String flightMgmtSK = "type"; // PNR
 
-        DynamoDBConfig config = new DynamoDBConfig();
+        DynamoDBTablesCreator config = new DynamoDBTablesCreator();
 
-        config.createTable(DynamoDBConfig.FLIGHT_MGMT_NAME, flightMgmtPK, flightMgmtSK);
-        config.createTable(DynamoDBConfig.USER_MGMT_NAME, flightMgmtPK, flightMgmtSK);
+        config.createTable(DynamoDBTablesCreator.FLIGHT_MGMT_NAME, flightMgmtPK, flightMgmtSK);
+        config.createTable(DynamoDBTablesCreator.USER_MGMT_NAME, flightMgmtPK, flightMgmtSK);
 
 
     }
